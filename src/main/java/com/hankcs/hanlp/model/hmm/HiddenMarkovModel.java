@@ -222,6 +222,13 @@ public abstract class HiddenMarkovModel
         for (int[][] sample : samples)
         {
             int s = sample[1][0];
+            // s 为sample(样本中)的health/fever(sample[1])中的初始状态概率向量([0])
+            // 下面这行写法又可以更换成
+//            if (s == 0){
+//                start_probability[0] += 1;
+//            }else{
+//                start_probability[1] += 1;
+//            }
             ++start_probability[s];
         }
         normalize(start_probability);

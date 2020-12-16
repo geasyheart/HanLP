@@ -56,6 +56,7 @@ public class FirstOrderHiddenMarkovModelTest extends TestCase
 
     public void testGenerate() throws Exception
     {
+        // generate的代码没有看懂
         FirstOrderHiddenMarkovModel givenModel = new FirstOrderHiddenMarkovModel(start_probability, transition_probability, emission_probability);
         for (int[][] sample : givenModel.generate(3, 5, 2))
         {
@@ -102,3 +103,31 @@ public class FirstOrderHiddenMarkovModelTest extends TestCase
 //        System.out.printf(" with highest probability of %.5f\n", prob);
     }
 }
+
+
+/*
+笔记:
+
+关于hmm，简单来讲就是统计思想，
+首先计算初始状态概率向量，就是计算生成的10000个样本中health和fever那一行（第一行，第零行是隐状态）中index=0的频次，然后经过normalizer获取概率值
+对于状态转移概率矩阵和发射概率矩阵来讲，也是一个道理，也是统计频率问题。
+
+那么最终结果就变成：
+初始状态概率向量： health有600，fever有400，那么health = 0.6, fever=0.4
+状态转移概率矩阵：{0.7, 0.3}, {0.4, 0.6}
+发射矩阵：{0.5, 0.4, 0.1}, {0.1, 0.3, 0.6}
+
+获取每一步的概率值以后，那么就是预测问题了，预测的求解过程为获取所有可能中概率值最大的输出，这一步可以使用vertbi算法来实现。
+
+
+此处引申一下：
+这里有两种情况，上面方式是获取所有可能中的最优解（即概率值最大的输出），但是同样还有另外一种可能性，就是把所有可能的输出加和作为预测显性序列
+的所有可能隐式序列.
+
+此处可以参考：https://www.zhihu.com/question/20962240
+
+在掷骰子这里，根据已知的结果序列，计算所有可能产生此结果序列所有的隐式序列加和，从而判断有没有出老千。
+
+
+ */
+
