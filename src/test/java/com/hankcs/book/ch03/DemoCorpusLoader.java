@@ -33,6 +33,11 @@ public class DemoCorpusLoader
         for (List<IWord> sentence : sentenceList)
         {
             System.out.println(sentence);
+
+//[商品, 和, 服务]
+//[商品, 和服, 物美价廉]
+//[服务, 和, 货币]
+
 //            for (IWord word : sentence)
 //            {
 //                System.out.println(word);

@@ -46,8 +46,8 @@ public class DemoNgramSegment
     {
         trainBigram(MY_CWS_CORPUS_PATH, MY_MODEL_PATH);
         loadBigram(MY_MODEL_PATH);
-        trainBigram(MSR.TRAIN_PATH, MSR_MODEL_PATH);
-        loadBigram(MSR_MODEL_PATH);
+//        trainBigram(MSR.TRAIN_PATH, MSR_MODEL_PATH);
+//        loadBigram(MSR_MODEL_PATH);
     }
 
     /**
@@ -109,7 +109,7 @@ public class DemoNgramSegment
             HanLP.Config.ShowTermNature = false;
             System.out.println("【商品】的词频：" + CoreDictionary.getTermFrequency("商品"));
             System.out.println("【商品@和】的频次：" + CoreBiGramTableDictionary.getBiFrequency("商品", "和"));
-            Segment segment = new DijkstraSegment()
+            Segment segment = new ViterbiSegment()
                 .enableAllNamedEntityRecognize(false)// 禁用命名实体识别
                 .enableCustomDictionary(false); // 禁用用户词典
             System.out.println(segment.seg("商品和服务"));

@@ -25,7 +25,8 @@ public class TestUtility
 {
     static
     {
-        ensureFullData();
+        // 忽略下载文件
+//        ensureFullData();
     }
 
     public static void ensureFullData()
